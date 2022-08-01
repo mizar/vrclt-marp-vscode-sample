@@ -1,0 +1,71 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {   "label": "marp(ja-JP, html+pdf) on node.js + vrclt-pdfconv(pdf to mp4) on docker",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "marp(ja-JP, html) on node.js",
+                "marp(ja-JP, pdf) on node.js",
+                "vrclt-pdfconv(pdf to mp4) on docker"
+            ],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {   "label": "marp(ja-JP, html) on node.js",
+            "type": "shell",
+            "command": "npx @marp-team/marp-cli@latest ${fileBasename} -e LANG=ja-JP --html --allow-local-files",
+            "problemMatcher": []
+        },
+        {   "label": "marp(ja-JP, pdf) on node.js",
+            "type": "shell",
+            "command": "npx @marp-team/marp-cli@latest ${fileBasename} -e LANG=ja-JP --html --allow-local-files --pdf --image-scale 2",
+            "problemMatcher": []
+        },
+        {   "label": "marp(ja-JP, pptx) on node.js",
+            "type": "shell",
+            "command": "npx @marp-team/marp-cli@latest ${fileBasename} -e LANG=ja-JP --html  --allow-local-files--pptx --image-scale 2",
+            "problemMatcher": []
+        },
+        {   "label": "marp(ja-JP, html) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/home/marp/app marpteam/marp-cli ${fileBasename} -e LANG=ja-JP --html --allow-local-files",
+            "problemMatcher": []
+        },
+        {   "label": "marp(ja-JP, pdf) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/home/marp/app marpteam/marp-cli ${fileBasename} -e LANG=ja-JP --html --allow-local-files --pdf --image-scale 2",
+            "problemMatcher": []
+        },
+        {   "label": "marp(ja-JP, pptx) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/home/marp/app marpteam/marp-cli ${fileBasename} -e LANG=ja-JP --html --allow-local-files --pptx --image-scale 2",
+            "problemMatcher": []
+        },
+        {   "label": "vrclt-pdfconv(pdf to mp4) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        },
+        {   "label": "vrclt-pdfconv(pdf to mp4 720p) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_720p ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        },
+        {   "label": "vrclt-pdfconv(pdf to mp4 1080p) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_1080p ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        },
+        {   "label": "vrclt-pdfconv(pdf to mp4 2160p) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_2160p ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        },
+        {   "label": "vrclt-pdfconv setup (docker pull)",
+            "type": "shell",
+            "command": "docker pull mizarjp/vrclt-pdfconv && docker pull marpteam/marp-cli",
+            "problemMatcher": []
+        }
+    ]
+}
