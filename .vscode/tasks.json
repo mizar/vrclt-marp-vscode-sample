@@ -57,6 +57,11 @@
             "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_1080p ${fileBasenameNoExtension}",
             "problemMatcher": []
         },
+        {   "label": "vrclt-pdfconv(pdf to mp4 1440p) on docker",
+            "type": "shell",
+            "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_1440p ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        },
         {   "label": "vrclt-pdfconv(pdf to mp4 2160p) on docker",
             "type": "shell",
             "command": "docker run -t --rm -v ${fileDirname}:/opt/work mizarjp/vrclt-pdfconv pdf2vrclt_2160p ${fileBasenameNoExtension}",
