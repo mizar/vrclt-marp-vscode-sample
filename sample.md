@@ -1,13 +1,27 @@
 ---
 theme: gaia
-_class: lead
 marp: true
 math: mathjax
 size: 16:9
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
+header: headerテキスト
+footer: footerテキスト
 ---
+
+<!-- _class: lead -->
+<!-- _footer: "" -->
+
+<!-- ↑のような "Directives" 構文の詳細は https://marpit.marp.app/directives を参照 -->
+
+<style>
+    <!-- 以降のページ全体に影響するスタイル変更のCSSは style ～ /style 内に書く -->
+</style>
+
+<style scoped>
+    <!-- そのページのみに影響するスタイル変更のCSSは style scoped ～ /style 内に書く -->
+</style>
 
 ![bg right:50% 80%](https://marp.app/assets/marp.svg)
 
